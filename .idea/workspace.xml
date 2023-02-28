@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf8ac91-2edd-48b1-96ae-3273e711c4b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/components/StatusText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/components/ModuleMotorTemp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/shuffleboard/extensions/RenderedWidget.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/team/gif/App.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +44,13 @@
       <list>
         <option value="Class" />
       </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
     </option>
   </component>
   <component name="MarkdownSettingsMigration">
@@ -105,7 +111,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1677525066440</updated>
-      <workItem from="1677525067403" duration="9741000" />
+      <workItem from="1677525067403" duration="13575000" />
     </task>
     <servers />
   </component>
