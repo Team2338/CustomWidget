@@ -1,0 +1,70 @@
+import org.gradle.internal.os.OperatingSystem;
+
+plugins {
+    id 'java-library'
+}
+
+group 'team.gif'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
+}
+
+ext.FRC_YEAR = "2023"
+
+def getFrcToolsRoot ()
+{
+    if (OperatingSystem.current().isWindows())
+    {
+        String pubFolder = System.getenv("PUBLIC")
+        if (pubFolder == null)
+        {
+            pubFolder = "C:\\Users\\Public"
+        }
+
+        return pubFolder + "/frc${FRC_YEAR}"
+
+    }
+    else
+    {
+        return System.getProperty("user.home") + "/wpilib/2023"
+    }
+}
+
+def getDeployDest ()
+{
+    return System.getProperty ("user.home") + "/Shuffleboard/plugins"
+}
+
+def getShuffleboardJar ()
+{
+    return files(getFrcToolsRoot() + "/tools/Shuffleboard.jar")
+}
+
+
+task deployWidget (type: Copy, group: "Shuffleboard Widget", description: "Copy the widget jar into the Shuffleboard plugin folder", dependsOn: "build") {
+    from "build/libs"
+    into getDeployDest ()
+    include "*.jar"
+}
+
+
+jar {
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+
+dependencies {
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    api getShuffleboardJar()
+
+    implementation 'com.google.guava:guava:27.0.1-jre'
+
+    testImplementation 'junit:junit-dep:4.11'
+}
