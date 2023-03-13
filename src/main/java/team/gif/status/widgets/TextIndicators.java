@@ -4,13 +4,16 @@ import edu.wpi.first.shuffleboard.api.prefs.Group;
 import edu.wpi.first.shuffleboard.api.prefs.Setting;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import team.gif.components.StatusText;
 import team.gif.shuffleboard.extensions.RenderedWidget;
-
+import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class TextIndicators extends RenderedWidget<Number> {
 
@@ -58,5 +61,65 @@ public class TextIndicators extends RenderedWidget<Number> {
                         "Animate", "Turn on/off animation each time data is received", alertAnimate, Boolean.class)));
 
         return propertyList;
+    }
+
+    private void setState(Double forValue) {
+
+        if (forValue >= normalMin.doubleValue() && forValue <= normalMax.doubleValue()) {
+            if (normalAnimate.getValue())
+                statusText.doAnimateOnData();
+
+            if (lastState == StatusText.DisplayState.NORMAL)
+                return;
+
+            lastState = StatusText.DisplayState.NORMAL;
+            statusText.displayStateObjectProperty().set(lastState);
+            return;
+        }
+
+        if (forValue >= warningMin.doubleValue() && forValue <= warningMax.doubleValue()) {
+            if (warningAnimate.getValue())
+                statusText.doAnimateOnData();
+
+            if (lastState == StatusText.DisplayState.MEDIUM)
+                return;
+
+            lastState = StatusText.DisplayState.MEDIUM;
+            statusText.displayStateObjectProperty().set(lastState);
+            return;
+        }
+
+        if (forValue >= alertMin.doubleValue() && forValue <= alertMax.doubleValue()) {
+            if (alertAnimate.getValue())
+                statusText.doAnimateOnData();
+
+            if (lastState == StatusText.DisplayState.MEDIUM)
+                return;
+
+            lastState = StatusText.DisplayState.HIGH;
+            statusText.displayStateObjectProperty().set(lastState);
+            return;
+        }
+
+        if (lastState != StatusText.DisplayState.HIGH) {
+            lastState = StatusText.DisplayState.HIGH;
+            statusText.displayStateObjectProperty().set(lastState);
+        }
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        super.initialize(arg0, arg1);
+        statusText.textProperty().bind(titleProperty());
+
+        // Using an anonymous class that implements the ChangeListener<T> interface, every time
+        // the bound number changes the value is checked to see if the state (color) needs to be changed.
+        dataProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number arg1, Number arg2) {
+                setState(arg2.doubleValue());
+            }
+        });
+
     }
 }
