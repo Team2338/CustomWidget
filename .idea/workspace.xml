@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="daf8ac91-2edd-48b1-96ae-3273e711c4b6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/components/ModuleMotorTemp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/shuffleboard/extensions/RenderedWidget.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/status/Entry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/team/gif/status/widgets/TextIndicators.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +72,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
